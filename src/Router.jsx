@@ -5,7 +5,7 @@ import { DefaultLayout } from './layouts/DefaultLayout'
 import { Home } from './pages/Home'
 import { WeeklyCare } from './pages/WeeklyCare'
 import { AverageHarvest } from './pages/AverageHarvest'
-import { Calendar } from './pages/Calendar'
+import { Calendar } from './pages/Calendar/Calendar'
 
 export function Router() {
   return (
