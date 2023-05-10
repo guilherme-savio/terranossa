@@ -1,12 +1,35 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 export function Header() {
   return (
-    <nav className='p-2 space-x-6'>
-      <NavLink to="/" title="Home">Home</NavLink>
-      <NavLink to="/weekly-care" title="WeeklyCare">Cuidados Semanais</NavLink>
-      <NavLink to="/average-harvest" title="AverageHarvest">Colheitas</NavLink>
-      <NavLink to="/calendar" title="Calendar">Calendário</NavLink>
-    </nav>
-  )
+    <div className="navbar bg-primary rounded-box shadow-xl text-base-100">
+      <div className="flex-1">
+        <a className="btn btn-ghost normal-case text-xl">TerraNossa</a>
+      </div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/" title="Home">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/weekly-care" title="WeeklyCare">
+              Cuidados Semanais
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/average-harvest" title="AverageHarvest">
+              Colheitas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/calendar" title="Calendar">
+              Calendário
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 }
