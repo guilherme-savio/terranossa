@@ -1,7 +1,32 @@
 import React, { useState } from "react";
 import Day from "./Day";
 
+const Difficulty = {
+  EASY: 'Easy',
+  MODERATE: 'Moderate',
+  DIFFICULT: 'Difficult'
+};
+
 export function Calendar() {
+  const activities = [
+    {
+      id: 1,
+      name: "Colheita",
+      date: new Date("2023-05-15"),
+      startTime: "10:00",
+      endTime: "14:00",
+      duration: 3630,
+      location: "Mount Rainier",
+      difficulty: Difficulty.MODERATE,
+      notes: "Bring plenty of water and sunscreen.",
+      participants: [
+        { name: "John Doe", age: 28 },
+        { name: "Jane Smith", age: 34 },
+      ],
+      organizer: { name: "Alice Brown", email: "alice@example.com" }
+    }
+  ];
+
   const [currentDate, setCurrentDate] = useState(new Date());
 
   function handlePrevMonth() {
@@ -17,11 +42,16 @@ export function Calendar() {
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
     for (let i = 1; i <= lastDay; i++) {
-      days.push(<Day>{i}</Day>);
+      const activity = activities.find(x => 
+        x.date.getFullYear() === currentDate.getFullYear() &&
+        x.date.getMonth() === currentDate.getMonth() &&
+        x.date.getDate() === i);
+      
+      days.push(<Day activity={activity}>{i}</Day>);
     }
 
-    const firstDayIndex = currentDate.getDay();
-    for (let i = 0; i < firstDayIndex; i++) {
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    for (let i = 0; i < firstDay; i++) {
       days.unshift(<div className="calendar-day empty" key={`empty-${i}`} />);
     }
 
