@@ -1,26 +1,21 @@
-import React, { useState } from "react";
-import Activity from "./Activity";
+import Activity from './Activity';
 
-export default function Day({ children, activity }) {
-  const [showModal, setShowModal] = useState(false);
+export default function Day({ children, isHeader, activity }) {
   const hasActivity = activity != null;
 
-  const handleClick = () => {
-    if (!hasActivity) return;
-
-    setShowModal(!showModal);
-  }
-
   return (
-    <div 
-      className=
-      {
-        (hasActivity ? "cursor-pointer " : "cursor-default ") + 
-        "calendar-day bg-primary-100 rounded-lg shadow-sm p-2"
-      } 
-      onClick={handleClick}>
-      {children}
-      {showModal && <Activity activity={activity}/>}
-    </div>
+    <>
+      <label
+        htmlFor={hasActivity ? activity.id : null}
+        className={
+          // (isHeader ? "badge-primary " : null) +
+          (hasActivity ? "badge-secondary text-white cursor-pointer " : "cursor-default ") +
+          "'calendar-day bg-primary-100 rounded-lg shadow-sm p-2"
+        }
+      >
+        {children} {activity?.name}
+      </label>
+      {hasActivity ? <Activity activity={activity} /> : null}
+    </>
   );
 }
