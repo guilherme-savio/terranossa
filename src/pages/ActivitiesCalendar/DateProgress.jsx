@@ -23,14 +23,14 @@ export default function DateProgress({ startDate, endDate }) {
   }
 
   return (
-    <div>
-    {formatDate(startDate)}
-    <progress
-      className="progress progress-primary w-56 mx-2"
-      value={progress}
-      max="100"
-    />
-    {formatDate(endDate)}
+    <div className="text-xs">
+      {formatDate(startDate)}
+      <progress
+        className="progress progress-primary w-2/5 mx-2"
+        value={progress}
+        max="100"
+      />
+      {formatDate(endDate)}
     </div>
   );
 }

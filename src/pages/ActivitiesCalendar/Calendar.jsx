@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Day from './Day';
+import Utils from '../../utils/Utils';
 
 export default function Calendar({ activities, currentActivity, setCurrentActivity }) {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -27,8 +28,8 @@ export default function Calendar({ activities, currentActivity, setCurrentActivi
       const date = new Date(year, month, i).getTime();
       const activity = activities.find(
         (activity) => {
-          const startDate = removeTime(activity.startDate).getTime();
-          const endDate = removeTime(activity.endDate).getTime();
+          const startDate = Utils.removeTime(activity.startDate).getTime();
+          const endDate = Utils.removeTime(activity.endDate).getTime();
 
           return (startDate === date || endDate === date || (startDate < date && endDate > date))
         }
@@ -52,14 +53,6 @@ export default function Calendar({ activities, currentActivity, setCurrentActivi
     }
 
     return days;
-  }
-
-  function removeTime(date) {
-    return new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate()
-    );
   }
 
   return (

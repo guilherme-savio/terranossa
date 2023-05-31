@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Activity from './Activity';
 import Calendar from './Calendar';
+import Note from './Note';
+import Utils from '../../utils/Utils';
 
 const Difficulty = {
   EASY: 'Fácil',
@@ -47,16 +49,7 @@ export function ActivitiesCalendar() {
   ];
 
   const [currentActivity, setCurrentActivity] = useState(activities
-    .find(activity => removeTime(activity.startDate).getTime() === removeTime(new Date()).getTime()));
-
-  // TODO: COLOCAR NUM UTILS
-  function removeTime(date) {
-    return new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate()
-    );
-  }
+    .find(activity => Utils.removeTime(activity.startDate).getTime() === Utils.removeTime(new Date()).getTime()));
   
   return (
     <div 
@@ -67,11 +60,7 @@ export function ActivitiesCalendar() {
         activities={activities} 
         currentActivity={currentActivity} 
         setCurrentActivity={setCurrentActivity}/>
-      <div className="mb-4 col-span-6">
-        <h2 className="text-lg font-semibold">
-          Legenda:
-        </h2>
-      </div>
+      <Note/>
     </div>
   );
 }
