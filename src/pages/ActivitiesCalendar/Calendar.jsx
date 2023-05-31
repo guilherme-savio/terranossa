@@ -1,45 +1,9 @@
 import React, { useState } from 'react';
 import Day from './Day';
 
-const Difficulty = {
-  EASY: 'Fácil',
-  MODERATE: 'Moderado',
-  HARD: 'Difícil',
-};
-
-export function Calendar() {
+export default function Calendar({ activities, currentActivity, setCurrentActivity }) {
   const [currentDate, setCurrentDate] = useState(new Date());
-
-  const activities = [
-    {
-      id: 1,
-      name: 'Colheita',
-      startDate: new Date('2023-05-30 10:00'),
-      endDate: new Date('2023-06-01 14:00'),
-      location: 'Treviso',
-      difficulty: Difficulty.HARD,
-      description: 'Colher cuzin.',
-      participants: [
-        { name: 'John Doe', age: 28 },
-        { name: 'Jane Smith', age: 34 },
-      ],
-      organizer: { name: 'Alice Brown', email: 'alice@example.com' },
-    },
-    {
-      id: 2,
-      name: 'Plantação',
-      startDate: new Date('2023-05-10 10:00'),
-      endDate: new Date('2023-05-10 14:00'),
-      location: 'Treviso',
-      difficulty: Difficulty.MODERATE,
-      description: 'Plantar cuzin.',
-      participants: [
-        { name: 'John Doe', age: 28 },
-        { name: null, age: null },
-      ],
-      organizer: { name: 'Alice Brown', email: 'alice@example.com' },
-    },
-  ];
+  const hasActivity = currentActivity != null;
 
   function handlePrevMonth() {
     setCurrentDate(
@@ -70,7 +34,15 @@ export function Calendar() {
         }
       );
 
-      days.push(<Day key={date} activity={activity}>{i}</Day>);
+      days.push(
+        <Day 
+          key={date} 
+          activity={activity} 
+          isHeader={false} 
+          setCurrentActivity={setCurrentActivity}
+        >
+          {i}
+        </Day>);
     }
 
     const firstDay = new Date(year, month, 1).getDay();
@@ -91,22 +63,24 @@ export function Calendar() {
   }
 
   return (
-    <div className="calendar bg-neutral-100 rounded-lg shadow-md p-4">
-      <div className="calendar-header mb-4">
-        <button className="btn btn-primary" onClick={handlePrevMonth}>
+    <div 
+      className={"col-span-4 " + (hasActivity ? "col-start-3 " : "col-start-2 ")}>
+      <div 
+        className="col-span-4 grid grid-cols-6 grid-rows-1 calendar-header mb-4">
+        <button className="btn btn-primary col-span-1" onClick={handlePrevMonth}>
           Prev
         </button>
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-center text-lg font-semibold col-span-4">
           {currentDate.toLocaleDateString(undefined, {
             month: 'long',
             year: 'numeric',
           })}
         </h2>
-        <button className="btn btn-primary" onClick={handleNextMonth}>
+        <button className="btn btn-primary col-span-" onClick={handleNextMonth}>
           Next
         </button>
       </div>
-      <div className="calendar-grid grid grid-cols-7 gap-4">
+      <div className="calendar-grid row-span-2 col-span-4 grid grid-cols-7 gap-4">
         <Day isHeader={true}>Domingo</Day>
         <Day isHeader={true}>Segunda-feira</Day>
         <Day isHeader={true}>Terça-feira</Day>
