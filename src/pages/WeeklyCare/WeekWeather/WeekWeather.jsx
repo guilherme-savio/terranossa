@@ -29,7 +29,7 @@ export function WeekWeather( {weatherapi} ) {
     return <div className="card w-96 h-full mt-5 me-5 bg-base-100 shadow-xl">
         <figure className="realtive"><img src={`src/pages/WeeklyCare/assets/${imgSrc}.png`} alt={imgAlt} className="w-[85%] p-[25px] blur-sm"/></figure>
         <div className="card-body">
-            <div className="card-title justify-center absolute top-[35%] left-[50%]" style={{transform: "translate(-50%, -50%)", fontSize: "40px", color: "rgb(100, 100, 100)" }}>{dayData["temp_c"]}°C</div>
+            <div className="card-title justify-center absolute top-[33%] left-[50%]" style={{transform: "translate(-50%, -50%)", fontSize: "40px", color: "rgb(100, 100, 100)" }}>{dayData["temp_c"]}°C</div>
             <div className="flex w-full">
                 <div className="w-1/2 h-10">
                     <div className="grid grid-cols-3 h-full flex-grow card bg-base-300 rounded-box place-items-center">

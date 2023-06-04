@@ -26,15 +26,15 @@ export function WateringLevel({weatherapi}) {
     return (
         <div className="card w-auto h-full mt-5 ms-5 bg-base-100 shadow-xl">
             <div className="card-body">
-                <h2 className="card-title">O quanto você deve regar nos próximos dias:</h2>
+                <h2 className="card-title">Estimativa de rega nos próximos dias:</h2>
                 <div className="grid grid-cols-7 place-items-center relative top-[38%] h-20">
-                    <ProgressBar value={getValue(weatherapiDays["0"][1])} day={getDay(weatherapiDays["0"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["1"][1])} day={getDay(weatherapiDays["1"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["2"][1])} day={getDay(weatherapiDays["2"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["3"][1])} day={getDay(weatherapiDays["3"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["4"][1])} day={getDay(weatherapiDays["4"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["5"][1])} day={getDay(weatherapiDays["5"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["6"][1])} day={getDay(weatherapiDays["6"][0])}/>
+                    <ProgressBar value={getValue(weatherapiDays["0"][1])} day={getDay(weatherapiDays["0"][0])}/>
                 </div>
             </div>
         </div>
