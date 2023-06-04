@@ -13,7 +13,7 @@ export default {
           accent: "#FA9F42",
           neutral: "#513B3C",
           "base-100": "#f5f5f4",
-          info: "#f5f5f4",
+          info: "#3ABFF8",
           success: "#003E1F",
           warning: "#FA9F42",
           error: "#C84C09",
