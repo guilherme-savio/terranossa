@@ -5,7 +5,7 @@
 /* Deixa as fontes mais nítidas */
 body {
   -webkit-font-smoothing: antialiased;
-  padding: 1.75rem;
+  padding: 2rem 4.5rem;
 }
 
 /* Estilos para as fontes e border-box reforçado para as tags que não recebem do root
