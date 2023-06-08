@@ -24,7 +24,7 @@ export function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/calendar" title="Calendar">
+            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/activities-calendar" title="Calendar">
               Calendário
             </NavLink>
           </li>
