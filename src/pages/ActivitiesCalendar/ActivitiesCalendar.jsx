@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Activity from './Activity';
+import DayDetails from './DayDetails';
 import Calendar from './Calendar';
 import Note from './Note';
 import Utils from '../../utils/Utils';
@@ -32,8 +32,8 @@ export function ActivitiesCalendar() {
     {
       id: 2,
       name: 'Plantação',
-      startDate: new Date('2023-05-10 10:00'),
-      endDate: new Date('2023-05-10 14:00'),
+      startDate: new Date('2023-06-01 10:00'),
+      endDate: new Date('2023-06-10 14:00'),
       location: 'Treviso',
       difficulty: Difficulty.MODERATE,
       description: 'Plantar cuzin.',
@@ -48,18 +48,26 @@ export function ActivitiesCalendar() {
     },
   ];
 
-  const [currentActivity, setCurrentActivity] = useState(activities
-    .find(activity => Utils.removeTime(activity.startDate).getTime() === Utils.removeTime(new Date()).getTime()));
+  const [currentDay, setCurrentDay] = useState(Utils.removeTime(new Date()));
   
   return (
-    <div 
-      className={
-        "bg-neutral-100 rounded-lg shadow-md p-4 grid grid-rows-3 grid-cols-6"}>
-      <Activity currentActivity={currentActivity}/>
+    <div className="grid grid-rows-3 grid-cols-6 justify-center">
       <Calendar 
         activities={activities} 
-        currentActivity={currentActivity} 
-        setCurrentActivity={setCurrentActivity}/>
+        setCurrentDay={setCurrentDay}
+      />
+      <DayDetails 
+        activities={activities.filter(
+          (activity) => {
+            const dateTime = currentDay.getTime();
+            const startDate = Utils.removeTime(activity.startDate).getTime();
+            const endDate = Utils.removeTime(activity.endDate).getTime();
+  
+            return (startDate === dateTime || endDate === dateTime || (startDate < dateTime && endDate > dateTime))
+          }
+        )} 
+        currentDay={currentDay}
+        />
       <Note/>
     </div>
   );

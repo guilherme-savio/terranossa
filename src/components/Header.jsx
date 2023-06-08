@@ -4,7 +4,7 @@ export function Header() {
   return (
     <div className="navbar bg-primary rounded-box shadow-xl text-base-100 mb-10">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">TerraNossa</a>
+        <NavLink className="btn btn-ghost normal-case text-xl" to="/">TerraNossa</NavLink>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
