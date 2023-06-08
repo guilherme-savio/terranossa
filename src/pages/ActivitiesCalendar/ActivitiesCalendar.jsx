@@ -52,9 +52,7 @@ export function ActivitiesCalendar() {
     .find(activity => Utils.removeTime(activity.startDate).getTime() === Utils.removeTime(new Date()).getTime()));
   
   return (
-    <div 
-      className={
-        "bg-neutral-100 rounded-lg shadow-md p-4 grid grid-rows-3 grid-cols-6"}>
+    <div className="grid grid-rows-3 grid-cols-6">
       <Activity currentActivity={currentActivity}/>
       <Calendar 
         activities={activities} 

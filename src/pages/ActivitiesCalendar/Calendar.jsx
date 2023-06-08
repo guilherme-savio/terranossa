@@ -57,7 +57,7 @@ export default function Calendar({ activities, currentActivity, setCurrentActivi
 
   return (
     <div 
-      className={"col-span-4 " + (hasActivity ? "col-start-3 " : "col-start-2 ")}>
+      className={"col-span-4 bg-neutral-100 rounded-lg shadow-md p-4 m-2 " + (hasActivity ? "col-start-3 " : "col-start-2 ")}>
       <div 
         className="col-span-4 grid grid-cols-6 grid-rows-1 calendar-header mb-4">
         <button className="btn btn-primary col-span-1" onClick={handlePrevMonth}>

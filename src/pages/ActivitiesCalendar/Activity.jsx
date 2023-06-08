@@ -25,8 +25,8 @@ export default function Activity({ currentActivity }) {
 
   return (
     <>
-      {hasActivity 
-        ? <div className="calendar-header mb-4 col-span-2">
+      {hasActivity &&
+          <div className="calendar-header col-span-2 bg-neutral-100 rounded-lg shadow-md p-4 m-4 transition-right">
             <div>
               <h2 className="text-xl font-bold text-center">{currentActivity.name}</h2>
               <DateProgress startDate={currentActivity.startDate} endDate={currentActivity.endDate} />
@@ -49,7 +49,7 @@ export default function Activity({ currentActivity }) {
                   </p>)}
             </div>
           </div> 
-        : null}
+        }
     </>
   );
 }
