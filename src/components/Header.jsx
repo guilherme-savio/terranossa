@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export function Header() {
   return (
-    <div className="navbar bg-primary rounded-box shadow-xl text-base-100">
+    <div className="navbar bg-primary rounded-box shadow-xl text-base-100 mb-10">
       <div className="flex-1">
         <NavLink className="btn btn-ghost normal-case text-xl" to="/">TerraNossa</NavLink>
       </div>
