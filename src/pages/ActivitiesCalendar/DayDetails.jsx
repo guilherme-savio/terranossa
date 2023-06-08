@@ -29,7 +29,7 @@ export default function DayDetails({ activities, currentDay }) {
   }
 
   return (
-    <div className="calendar-header col-span-3 bg-neutral-100 rounded-lg shadow-md p-4 m-4">
+    <div className="calendar-header col-span-3 bg-neutral-100 rounded-lg shadow-md p-4 m-2 relative">
       <div>
         <h2 className="text-xl font-bold text-center">{formatDate(currentDay)}</h2>
       </div>
@@ -43,6 +43,9 @@ export default function DayDetails({ activities, currentDay }) {
             <h3>Tem nada não</h3>
           </>
       }
+      <button className="btn btn-primary absolute right-3 bottom-3">
+        Adicionar nova atividade
+      </button>
   </div>
   );
 }
