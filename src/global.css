@@ -8,6 +8,33 @@ body {
   padding: 2rem 4.5rem;
 }
 
+@media (min-width: 768px) {
+  body {
+    padding: 2rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding: 2rem 8rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  body {
+    padding: 2rem 18rem;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
 /* Estilos para as fontes e border-box reforçado para as tags que não recebem do root
 Obs.: Input, textarea e button por default não recebem o css do body, por isso estão aqui */
 body, input, textarea, button {
