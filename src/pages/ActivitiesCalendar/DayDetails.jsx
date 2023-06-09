@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
-import DateProgress from './DateProgress';
+import Activity from './Activity';
 
-export default function DayDetails({ activities, currentDay }) {
-  const [tab, setTab] = useState(0);
-  const hasActivity = activities.length > 0;
+export default function DayDetails({ activities, setActivities, dayActivities, setDayActivities, currentDay }) {
+  const hasActivity = dayActivities.length > 0;
   
   function renderActivities() {
-    const activitiesList = [];
+    return dayActivities.map(activity => {
+      return (
+        <Activity 
+          key={activity.id}
+          activity={activity}
+          activities={activities}
+          setActivities={setActivities}
+          dayActivities={dayActivities}
+          setDayActivities={setDayActivities}
+        />
+      );
+    });
+  }
 
-    activities.forEach(activity => {
-      activitiesList.push(
-        <li>
-          <div className="bg-neutral-100 rounded-lg shadow-md p-4 m-2">
-            <h3>{activity.name}</h3>
-            <DateProgress startDate={activity.startDate} endDate={activity.endDate}/>
-          </div>
-        </li>)
-    })
+  function addActivity() {
+    const newActivity = {
+      id: 3, 
+      name: '', 
+      enableEdit: true, 
+      startDate: currentDay,
+      endDate: currentDay, 
+    };
 
-    return activitiesList;
+    setDayActivities([...dayActivities, newActivity]);
   }
 
   function formatDate(date) {
@@ -35,15 +45,15 @@ export default function DayDetails({ activities, currentDay }) {
       </div>
       {hasActivity 
         ? <>
-            <ul className="">
+            <ul>
               {renderActivities()}
             </ul>
-          </> 
+          </>
         : <>
             <h3>Tem nada não</h3>
           </>
       }
-      <button className="btn btn-primary absolute right-3 bottom-3">
+      <button onClick={addActivity} className="btn btn-primary absolute right-3 bottom-3">
         Adicionar nova atividade
       </button>
   </div>

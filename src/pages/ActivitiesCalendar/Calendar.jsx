@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Day from './Day';
-import Utils from '../../utils/Utils';
+import ActivityService from './services/ActivityService';
 
-export default function Calendar({ activities, setCurrentDay }) {
+export default function Calendar({ activities, setCurrentDay, setDayActivities }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   function handlePrevMonth() {
@@ -25,23 +25,17 @@ export default function Calendar({ activities, setCurrentDay }) {
 
     for (let i = 1; i <= lastDay; i++) {
       const date = new Date(year, month, i);
-      const dateTime = date.getTime();
-      const hasActivity = activities.some(
-        (activity) => {
-          const startDate = Utils.removeTime(activity.startDate).getTime();
-          const endDate = Utils.removeTime(activity.endDate).getTime();
-
-          return (startDate === dateTime || endDate === dateTime || (startDate < dateTime && endDate > dateTime))
-        }
-      );
+      const hasActivity = ActivityService.hasInDate(activities, date);
 
       days.push(
         <Day 
-          key={dateTime} 
+          key={date.getTime()} 
           date={date}
           hasActivity={hasActivity} 
           isHeader={false} 
           setCurrentDay={setCurrentDay}
+          activities={activities}
+          setDayActivities={setDayActivities}
         >
           {i}
         </Day>);

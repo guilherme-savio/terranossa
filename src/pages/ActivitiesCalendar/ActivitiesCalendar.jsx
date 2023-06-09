@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DayDetails from './DayDetails';
 import Calendar from './Calendar';
 import Note from './Note';
+import ActivityService from './services/ActivityService';
 import Utils from '../../utils/Utils';
 
 const Difficulty = {
@@ -11,7 +12,8 @@ const Difficulty = {
 };
 
 export function ActivitiesCalendar() {
-  const activities = [
+  const [currentDay, setCurrentDay] = useState(Utils.removeTime(new Date()));
+  const [activities, setActivities] = useState([
     {
       id: 1,
       name: 'Colheita',
@@ -46,29 +48,23 @@ export function ActivitiesCalendar() {
         email: 'alice@example.com' 
       },
     },
-  ];
+  ]);
+  const [dayActivities, setDayActivities] = useState(ActivityService.getByDate(activities, currentDay));
 
-  const [currentDay, setCurrentDay] = useState(Utils.removeTime(new Date()));
-  
   return (
     <div className="grid grid-rows-3 grid-cols-6 justify-center">
       <Calendar 
         activities={activities} 
         setCurrentDay={setCurrentDay}
+        setDayActivities={setDayActivities}
       />
       <DayDetails 
-        activities={activities.filter(
-          (activity) => {
-            const dateTime = currentDay.getTime();
-            const startDate = Utils.removeTime(activity.startDate).getTime();
-            const endDate = Utils.removeTime(activity.endDate).getTime();
-  
-            return (startDate === dateTime || endDate === dateTime || (startDate < dateTime && endDate > dateTime))
-          }
-        )} 
+        activities={activities}
+        setActivities={setActivities}
+        dayActivities={dayActivities} 
+        setDayActivities={setDayActivities}
         currentDay={currentDay}
-        />
-      <Note/>
+      />
     </div>
   );
 }
