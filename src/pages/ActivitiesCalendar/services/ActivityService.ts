@@ -1,7 +1,14 @@
 import Utils from '../../../utils/Utils';
 
 export default class ActivityService {
-  static getByDate(activities, date) {
+  static lastId: number = 0;
+  
+  static getNextId(): number {
+    this.lastId = this.lastId + 1;
+    return this.lastId;
+  }
+
+  static getByDate(activities: any[], date: Date) {
     const dateTime = date.getTime();
 
     return activities.filter(activity => {
@@ -12,7 +19,7 @@ export default class ActivityService {
     });
   }
 
-  static hasInDate(activities, date) {
+  static hasInDate(activities: any[], date: Date) {
     return this.getByDate(activities, date).length > 0;
   }
 }

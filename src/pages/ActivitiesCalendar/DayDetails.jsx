@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Activity from './Activity';
+import ActivityCard from './ActivityCard';
+import Activity from './models/Activity';
 
 export default function DayDetails({ activities, setActivities, dayActivities, setDayActivities, currentDay }) {
   const hasActivity = dayActivities.length > 0;
@@ -7,7 +8,7 @@ export default function DayDetails({ activities, setActivities, dayActivities, s
   function renderActivities() {
     return dayActivities.map(activity => {
       return (
-        <Activity 
+        <ActivityCard 
           key={activity.id}
           activity={activity}
           activities={activities}
@@ -20,13 +21,7 @@ export default function DayDetails({ activities, setActivities, dayActivities, s
   }
 
   function addActivity() {
-    const newActivity = {
-      id: 3, 
-      name: '', 
-      enableEdit: true, 
-      startDate: currentDay,
-      endDate: currentDay, 
-    };
+    const newActivity = new Activity('', currentDay, currentDay, true);
 
     setDayActivities([...dayActivities, newActivity]);
   }

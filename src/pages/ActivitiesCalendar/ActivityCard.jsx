@@ -1,6 +1,6 @@
 import DateProgress from './DateProgress';
 
-export default function Activity({ activity, activities, setActivities, dayActivities, setDayActivities }) {
+export default function ActivityCard({ activity, activities, setActivities, dayActivities, setDayActivities }) {
   const enableEdit = activity.enableEdit || false;
 
   const handleNameChange = (e) => {

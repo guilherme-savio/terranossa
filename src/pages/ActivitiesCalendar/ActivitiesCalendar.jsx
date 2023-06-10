@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import DayDetails from './DayDetails';
 import Calendar from './Calendar';
-import Note from './Note';
 import ActivityService from './services/ActivityService';
 import Utils from '../../utils/Utils';
+import Activity from './models/Activity';
+import Person from './models/Person';
 
 const Difficulty = {
   EASY: 'Fácil',
@@ -14,40 +15,31 @@ const Difficulty = {
 export function ActivitiesCalendar() {
   const [currentDay, setCurrentDay] = useState(Utils.removeTime(new Date()));
   const [activities, setActivities] = useState([
-    {
-      id: 1,
-      name: 'Colheita',
-      startDate: new Date('2023-05-30 10:00'),
-      endDate: new Date('2023-06-01 14:00'),
-      location: 'Treviso',
-      difficulty: Difficulty.HARD,
-      description: 'Colher cuzin.',
-      participants: [
-        { name: 'John Doe', age: 28 },
-        { name: 'Jane Smith', age: 34 },
+    new Activity(
+      'Colheita', 
+      new Date('2023-05-30 10:00'), 
+      new Date('2023-06-01 14:00'), 
+      false,
+      'Treviso', 
+      Difficulty.HARD, 
+      'Colher cuzin.',
+      [
+        new Person('John Doe', 28),
+        new Person('Jane Smith', 34)
       ],
-      organizer: { 
-        name: 'Alice Brown', 
-        email: 'alice@example.com' 
-      },
-    },
-    {
-      id: 2,
-      name: 'Plantação',
-      startDate: new Date('2023-06-01 10:00'),
-      endDate: new Date('2023-06-10 14:00'),
-      location: 'Treviso',
-      difficulty: Difficulty.MODERATE,
-      description: 'Plantar cuzin.',
-      participants: [
-        { name: 'John Doe', age: 28 },
-        { name: null, age: null },
+      new Person('Alice Brown', 30)),
+    new Activity(
+      'Plantação', 
+      new Date('2023-06-01 10:00'), 
+      new Date('2023-06-10 14:00'), 
+      false,
+      'Treviso', 
+      Difficulty.MODERATE, 
+      'Plantar cuzin.',
+      [
+        new Person('John Doe', 28)
       ],
-      organizer: { 
-        name: 'Alice Brown', 
-        email: 'alice@example.com' 
-      },
-    },
+      new Person('Alice Brown', 30))
   ]);
   const [dayActivities, setDayActivities] = useState(ActivityService.getByDate(activities, currentDay));
 
