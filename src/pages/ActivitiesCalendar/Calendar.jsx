@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Day from './Day';
 import ActivityService from './services/ActivityService';
+import ActivityContext from './contexts/ActivityContext';
 
-export default function Calendar({ activities, setCurrentDay, setDayActivities }) {
+export default function Calendar() {
+  const { activities } = useContext(ActivityContext);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   function handlePrevMonth() {
@@ -25,17 +27,13 @@ export default function Calendar({ activities, setCurrentDay, setDayActivities }
 
     for (let i = 1; i <= lastDay; i++) {
       const date = new Date(year, month, i);
-      const hasActivity = ActivityService.hasInDate(activities, date);
 
       days.push(
         <Day 
           key={date.getTime()} 
           date={date}
-          hasActivity={hasActivity} 
-          isHeader={false} 
-          setCurrentDay={setCurrentDay}
-          activities={activities}
-          setDayActivities={setDayActivities}
+          hasActivity={ActivityService.hasInDate(activities, date)} 
+          isHeader={false}
         >
           {i}
         </Day>);
@@ -52,9 +50,7 @@ export default function Calendar({ activities, setCurrentDay, setDayActivities }
 
   return (
     <div className={"col-span-3 bg-neutral-100 rounded-lg shadow-md p-4 m-2 "}>
-      <div 
-        className="col-span-4 grid grid-cols-6 grid-rows-1 calendar-header mb-4"
-      >
+      <div className="col-span-4 grid grid-cols-6 grid-rows-1 calendar-header mb-4">
         <button className="btn btn-primary col-span-1" onClick={handlePrevMonth}>
           Prev
         </button>
@@ -69,13 +65,13 @@ export default function Calendar({ activities, setCurrentDay, setDayActivities }
         </button>
       </div>
       <div className="calendar-grid row-span-2 col-span-4 grid grid-cols-7 gap-4">
-        <Day isHeader={true}>Dom</Day>
-        <Day isHeader={true}>Seg</Day>
-        <Day isHeader={true}>Ter</Day>
-        <Day isHeader={true}>Qua</Day>
-        <Day isHeader={true}>Qui</Day>
-        <Day isHeader={true}>Sex</Day>
-        <Day isHeader={true}>Sáb</Day>
+        <Day>Dom</Day>
+        <Day>Seg</Day>
+        <Day>Ter</Day>
+        <Day>Qua</Day>
+        <Day>Qui</Day>
+        <Day>Sex</Day>
+        <Day>Sáb</Day>
         {renderCalendarDays()}
       </div>
     </div>

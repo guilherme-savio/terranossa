@@ -1,4 +1,5 @@
 import Utils from '../../../utils/Utils';
+import Activity from '../models/Activity';
 
 export default class ActivityService {
   static lastId: number = 0;
@@ -8,7 +9,7 @@ export default class ActivityService {
     return this.lastId;
   }
 
-  static getByDate(activities: any[], date: Date) {
+  static getByDate(activities: Activity[], date: Date) {
     const dateTime = date.getTime();
 
     return activities.filter(activity => {
@@ -19,7 +20,19 @@ export default class ActivityService {
     });
   }
 
-  static hasInDate(activities: any[], date: Date) {
+  static hasInDate(activities: Activity[], date: Date) {
     return this.getByDate(activities, date).length > 0;
+  }
+
+  static getToUpdate(activities: Activity[], dayActivities: Activity[]) {
+    const updated = dayActivities.filter(activity => activity?.name !== '');
+
+    activities.map((activity) => {
+      if (!dayActivities.some(a => a.id === activity.id)) {
+        updated.push(activity);
+      } 
+    });
+
+    return updated;
   }
 }

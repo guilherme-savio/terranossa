@@ -1,7 +1,9 @@
-import Utils from '../../utils/Utils';
-import ActivityService from './services/ActivityService';
+import { useContext } from 'react'
+import CurrentDayContext from './contexts/CurrentDayContext';
 
-export default function Day({ date, children, isHeader, hasActivity, setCurrentDay, activities, setDayActivities }) {
+export default function Day({ children, date, hasActivity, isHeader = true }) {
+  const { setCurrentDay } = useContext(CurrentDayContext);
+
   return (
     <div
       className={
@@ -9,10 +11,7 @@ export default function Day({ date, children, isHeader, hasActivity, setCurrentD
         (hasActivity ? "badge-secondary text-white cursor-pointer " : "cursor-default ") +
         "calendar-day bg-primary-100 rounded-lg shadow-sm p-2"
       }
-      onClick={() => {
-        setCurrentDay(date);
-        setDayActivities(ActivityService.getByDate(activities, date))
-      }}
+      onClick={() => date !== undefined && setCurrentDay(date)}
     >
       {children}
     </div>

@@ -1,6 +1,10 @@
+import React, { useContext } from 'react';
 import DateProgress from './DateProgress';
+import DayActivityContext from './contexts/DayActivityContext';
 
-export default function ActivityCard({ activity, activities, setActivities, dayActivities, setDayActivities }) {
+export default function ActivityCard({ activity }) {
+  const { dayActivities, setDayActivities } = useContext(DayActivityContext);
+
   const enableEdit = activity.enableEdit || false;
 
   const handleNameChange = (e) => {
@@ -27,39 +31,27 @@ export default function ActivityCard({ activity, activities, setActivities, dayA
     setDayActivities(updatedActivities);
   };
 
-  const saveChanges = () => {
-    const updated = [...dayActivities];
-
-    activities.map((activity) => {
-      if (!dayActivities.some(a => a.id === activity.id)) {
-        updated.push(activity);
-      } 
-    });
-
-    setActivities(updated);
-  }
-
   return (
     <li key={activity.id} className="bg-neutral-100 rounded-lg shadow-md p-4 m-2">
-      <div className="relative flex items-center">
+      <div className="relative flex items-center mb-1">
         <input 
           className="flex-grow" 
           value={activity.name} 
           onChange={handleNameChange} 
           disabled={!enableEdit}
         />
-        <button onClick={toggleEdit} className="ml-2">
+        <button onClick={toggleEdit} className="ml-2 w-5">
           <img
             src="src/pages/ActivitiesCalendar/assets/edit.png"
             alt="edit"
-            className="w-[20%]"
+            className="object-cover"
           />
         </button>
-        <button onClick={saveChanges} className={enableEdit ? "visible" : "invisible"}>
+        <button className="ml-2 w-5">
           <img
             src="src/pages/ActivitiesCalendar/assets/save.png"
-            alt="edit"
-            className="w-[20%]"
+            alt="save"
+            className="object-cover"
           />
         </button>
       </div>

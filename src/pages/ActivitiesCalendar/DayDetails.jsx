@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import ActivityCard from './ActivityCard';
 import Activity from './models/Activity';
+import CurrentDayContext from './contexts/CurrentDayContext';
+import DayActivityContext from './contexts/DayActivityContext';
 
-export default function DayDetails({ activities, setActivities, dayActivities, setDayActivities, currentDay }) {
-  const hasActivity = dayActivities.length > 0;
+export default function DayDetails() {
+  const { dayActivities, setDayActivities } = useContext(DayActivityContext);
+  const { currentDay } = useContext(CurrentDayContext);
   
   function renderActivities() {
-    return dayActivities.map(activity => {
-      return (
-        <ActivityCard 
-          key={activity.id}
-          activity={activity}
-          activities={activities}
-          setActivities={setActivities}
-          dayActivities={dayActivities}
-          setDayActivities={setDayActivities}
-        />
-      );
-    });
+    return dayActivities.map(activity => <ActivityCard key={activity.id} activity={activity}/>);
   }
 
   function addActivity() {
-    const newActivity = new Activity('', currentDay, currentDay, true);
-
-    setDayActivities([...dayActivities, newActivity]);
+    setDayActivities([...dayActivities, new Activity('', currentDay, currentDay, true)]);
   }
 
   function formatDate(date) {
@@ -38,15 +28,9 @@ export default function DayDetails({ activities, setActivities, dayActivities, s
       <div>
         <h2 className="text-xl font-bold text-center">{formatDate(currentDay)}</h2>
       </div>
-      {hasActivity 
-        ? <>
-            <ul>
-              {renderActivities()}
-            </ul>
-          </>
-        : <>
-            <h3>Tem nada não</h3>
-          </>
+      {dayActivities.length > 0 
+        ? <ul>{renderActivities()}</ul>
+        : <h3>Tem nada não</h3>
       }
       <button onClick={addActivity} className="btn btn-primary absolute right-3 bottom-3">
         Adicionar nova atividade
