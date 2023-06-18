@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 export function DefaultLayout() {
   return (
@@ -9,6 +10,7 @@ export function DefaultLayout() {
       <Header />
       {/* O Outlet é uma forma de representar todas as páginas que estão no Router do react-router-dom */}
       <Outlet />
+      <Footer />
     </>
   )
 }
