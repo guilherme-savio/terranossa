@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="footer p-10 bg-neutral text-neutral-content left-0 absolute mt-44">
+    <footer className="footer p-10 bg-neutral text-neutral-content left-0 absolute">
       <div>
         <svg
           className="w-12 h-12 fill-secondary"

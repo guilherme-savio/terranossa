@@ -4,7 +4,7 @@ import { StatsCard } from "./StatsCard/StatsCard";
 
 export function Home() {
   return (
-    <div>
+    <div className="mb-44">
       <div
         className="absolute inset-0 -z-50 w-full h-screen"
         style={{

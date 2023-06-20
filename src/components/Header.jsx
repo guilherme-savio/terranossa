@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export function Header() {
   return (
-    <div className="navbar bg-primary rounded-box shadow-xl text-base-100 mb-10">
+    <div className="navbar pl-4 bg-primary rounded-box shadow-xl text-base-100 mb-10">
       <div className="flex-1">
         <svg className="w-7 h-7 fill-secondary" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Capa_1" width="800px" height="800px" viewBox="0 0 105.296 105.296" xml:space="preserve">
           <g>
