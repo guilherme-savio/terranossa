@@ -1,5 +1,6 @@
-import background from "../assets/img/home_background.jpg";
-import aboutImg from "../assets/img/home_about.jpg";
+import background from "../../assets/img/home_background.jpg";
+import aboutImg from "../../assets/img/home_about.jpg";
+import { StatsCard } from "./StatsCard/StatsCard";
 
 export function Home() {
   return (
@@ -54,29 +55,9 @@ export function Home() {
       </div>
 
       <div className="stats stats-vertical lg:stats-horizontal shadow h-40 w-full">
-        <div className="stat">
-          <div className="stat-figure text-secondary">
-            <img className="inline-block w-10 h-10 stroke-current fill-primary" src="src/assets/icons/grains.svg"></img>
-          </div>
-          <div className="stat-title">Canteiros Observados</div>
-          <div className="stat-value">300</div>
-        </div>
-
-        <div className="stat">
-          <div className="stat-figure text-secondary">
-          <img className="inline-block w-10 h-10 stroke-current fill-primary" src="src/assets/icons/harvest.svg"></img>
-          </div>
-          <div className="stat-title">Alimentos produzidos</div>
-          <div className="stat-value">21.000</div>
-        </div>
-
-        <div className="stat">
-          <div className="stat-figure text-secondary">
-            <img className="inline-block w-10 h-10 stroke-current fill-primary" src="src/assets/icons/communities.svg"></img>
-          </div>
-          <div className="stat-title">Famílias apoiadas</div>
-          <div className="stat-value">1,200</div>
-        </div>
+        <StatsCard img={"src/assets/icons/grains.svg"} title={"Canteiros Observados"} value={'300'}/>
+        <StatsCard img={"src/assets/icons/harvest.svg"} title={"Alimentos produzidos"} value={'21.000'}/>
+        <StatsCard img={"src/assets/icons/communities.svg"} title={"Famílias apoiadas"} value={'1.200'}/>
       </div>
     </div>
   );

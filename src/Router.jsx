@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import { DefaultLayout } from './layouts/DefaultLayout'
 
-import { Home } from './pages/Home'
+import { Home } from './pages/Home/Home'
 import { WeeklyCare } from './pages/WeeklyCare/WeeklyCare'
 import { AverageHarvest } from './pages/AverageHarvest'
 import { ActivitiesCalendar } from './pages/ActivitiesCalendar/ActivitiesCalendar'
