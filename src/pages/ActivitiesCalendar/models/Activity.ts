@@ -12,6 +12,7 @@ export default class Activity {
     participants: Person[];
     organizer: Person;
     enableEdit: boolean;
+    delete: boolean;
 
     constructor(
         name: string, 
@@ -28,6 +29,7 @@ export default class Activity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.enableEdit = enableEdit;
+        this.delete = false;
 
         if (location) {
             this.location = location;

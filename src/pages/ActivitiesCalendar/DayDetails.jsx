@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ActivityCard from './ActivityCard';
 import Activity from './models/Activity';
 import CurrentDayContext from './contexts/CurrentDayContext';
@@ -7,9 +7,9 @@ import DayActivityContext from './contexts/DayActivityContext';
 export default function DayDetails() {
   const { dayActivities, setDayActivities } = useContext(DayActivityContext);
   const { currentDay } = useContext(CurrentDayContext);
-  
+
   function renderActivities() {
-    return dayActivities.map(activity => <ActivityCard key={activity.id} activity={activity}/>);
+    return dayActivities.map(activity => !activity.delete && <ActivityCard key={activity.id} activity={activity}/>);
   }
 
   function addActivity() {
@@ -30,7 +30,15 @@ export default function DayDetails() {
       </div>
       {dayActivities.length > 0 
         ? <ul>{renderActivities()}</ul>
-        : <h3>Tem nada não</h3>
+        : <div className='text-center'>
+            <br/>
+            <h3>Não existem atividades agendadas para esse dia.</h3>
+            <img
+              src="src/pages/ActivitiesCalendar/assets/sad.png"
+              alt="sad"
+              className="w-60"
+            />
+          </div>
       }
       <button onClick={addActivity} className="btn btn-primary absolute right-3 bottom-3">
         Adicionar nova atividade

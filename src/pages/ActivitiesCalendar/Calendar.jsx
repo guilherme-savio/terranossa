@@ -49,7 +49,7 @@ export default function Calendar() {
   }
 
   return (
-    <div className={"col-span-3 bg-neutral-100 rounded-lg shadow-md p-4 m-2 "}>
+    <div className={"col-span-3 bg-neutral-100 rounded-lg shadow-md p-4 m-2"}>
       <div className="col-span-4 grid grid-cols-6 grid-rows-1 calendar-header mb-4">
         <button className="btn btn-primary col-span-1" onClick={handlePrevMonth}>
           Prev

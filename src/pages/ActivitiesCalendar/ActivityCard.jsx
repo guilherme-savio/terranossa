@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import DateProgress from './DateProgress';
 import DayActivityContext from './contexts/DayActivityContext';
 
 export default function ActivityCard({ activity }) {
   const { dayActivities, setDayActivities } = useContext(DayActivityContext);
+  const [showOptions, setShowOptions] = useState(false);
 
   const enableEdit = activity.enableEdit || false;
 
@@ -15,7 +16,7 @@ export default function ActivityCard({ activity }) {
 
       return a;
     });
-    
+
     setDayActivities(updatedActivities);
   };
 
@@ -31,13 +32,27 @@ export default function ActivityCard({ activity }) {
     setDayActivities(updatedActivities);
   };
 
+  const deleteActivity = () => {
+    const updatedActivities = dayActivities.map((a) => {
+      if (a.id === activity.id) {
+        return { ...a, delete: true };
+      }
+    });
+
+    setDayActivities(updatedActivities);
+  };
+
+  const toggleOptions = () => {
+    setShowOptions(!showOptions);
+  };
+
   return (
     <li key={activity.id} className="bg-neutral-100 rounded-lg shadow-md p-4 m-2">
       <div className="relative flex items-center mb-1">
-        <input 
-          className="flex-grow" 
-          value={activity.name} 
-          onChange={handleNameChange} 
+        <input
+          className="flex-grow"
+          value={activity.name}
+          onChange={handleNameChange}
           disabled={!enableEdit}
         />
         <button onClick={toggleEdit} className="ml-2 w-5">
@@ -47,13 +62,18 @@ export default function ActivityCard({ activity }) {
             className="object-cover"
           />
         </button>
-        <button className="ml-2 w-5">
+        <button onClick={toggleOptions} className="ml-2 w-5">
           <img
-            src="src/pages/ActivitiesCalendar/assets/save.png"
-            alt="save"
+            src="src/pages/ActivitiesCalendar/assets/info.png"
+            alt="info"
             className="object-cover"
           />
         </button>
+        {showOptions && (
+          <div className="absolute bg-white shadow-md mt-2 py-2 px-4 rounded-lg right-0 top-5">
+            <button onClick={deleteActivity}>Excluir</button>
+          </div>
+        )}
       </div>
       <DateProgress startDate={activity.startDate} endDate={activity.endDate} />
     </li>

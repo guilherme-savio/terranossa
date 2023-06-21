@@ -25,7 +25,7 @@ export default class ActivityService {
   }
 
   static getToUpdate(activities: Activity[], dayActivities: Activity[]) {
-    const updated = dayActivities.filter(activity => activity?.name !== '');
+    const updated = dayActivities.filter(activity => activity?.name !== '' && !activity?.delete);
 
     activities.map((activity) => {
       if (!dayActivities.some(a => a.id === activity.id)) {

@@ -23,6 +23,14 @@ export function ActivitiesCalendar() {
     <ActivityContext.Provider value={{activities, setActivities}}>
       <DayActivityContext.Provider value={{dayActivities, setDayActivities}}>
         <CurrentDayContext.Provider value={{currentDay, setCurrentDay}}>
+          <div
+            className="absolute inset-0 -z-50 w-full h-screen"
+            style={{
+              background: `linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(src/pages/ActivitiesCalendar/assets/rural.jpg)`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          />
           <div className="grid grid-rows-3 grid-cols-6 justify-center">
             <Calendar />
             <DayDetails />
