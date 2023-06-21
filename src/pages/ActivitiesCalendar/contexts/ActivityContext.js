@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import Activity from '../models/Activity';
-import Person from '../models/Person';
+import Activity from '../../../models/Activity';
+import Person from '../../../models/Person';
 
 const difficultyEnum = {
     EASY: 'Fácil',

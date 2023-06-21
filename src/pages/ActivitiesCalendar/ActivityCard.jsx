@@ -57,14 +57,14 @@ export default function ActivityCard({ activity }) {
         />
         <button onClick={toggleEdit} className="ml-2 w-5">
           <img
-            src="src/pages/ActivitiesCalendar/assets/edit.png"
+            src="src/assets/img/edit.png"
             alt="edit"
             className="object-cover"
           />
         </button>
         <button onClick={toggleOptions} className="ml-2 w-5">
           <img
-            src="src/pages/ActivitiesCalendar/assets/info.png"
+            src="src/assets/img/info.png"
             alt="info"
             className="object-cover"
           />

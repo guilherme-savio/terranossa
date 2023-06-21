@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Day from './Day';
-import ActivityService from './services/ActivityService';
+import ActivityService from '../../services/ActivityService';
 import ActivityContext from './contexts/ActivityContext';
 
 export default function Calendar() {

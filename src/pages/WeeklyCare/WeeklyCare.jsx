@@ -1,11 +1,9 @@
 import background from "./assets/background-weeklycare.jpg"
 import { WeekWeather } from "./WeekWeather/WeekWeather"
 import { WateringLevel } from "./WateringLevel/WateringLevel"
-import { Section } from "./Section"
 import { LoadingAPI } from "./Loading";
 import { useEffect, useState } from "react";
-
-
+import PageTitle from "../../components/PageTitle";
 
 export function WeeklyCare() {
   const [lista, setLista] = useState([]);
@@ -35,7 +33,11 @@ export function WeeklyCare() {
       />
 
       <div className="mb-[10%]">
-        <Section />
+        <PageTitle 
+          subTitle="Mantenha a horta em controle"
+          title="Manutenção"
+          desc="Fique atualizado com a previsão do tempo e descubra a estimativa de rega nos próximos dias."
+          img="src\pages\WeeklyCare\assets\tesoura-de-jardim.png"/>
         <div className="flex mt-[5%]">
           <div>
             <WeekWeather weatherapi={lista} />

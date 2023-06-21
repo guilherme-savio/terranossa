@@ -1,4 +1,4 @@
-import Utils from '../../../utils/Utils';
+import Utils from '../utils/Utils';
 import Activity from '../models/Activity';
 
 export default class ActivityService {

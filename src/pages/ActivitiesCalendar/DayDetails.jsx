@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ActivityCard from './ActivityCard';
-import Activity from './models/Activity';
+import Activity from '../../models/Activity';
 import CurrentDayContext from './contexts/CurrentDayContext';
 import DayActivityContext from './contexts/DayActivityContext';
 
@@ -34,7 +34,7 @@ export default function DayDetails() {
             <br/>
             <h3>Não existem atividades agendadas para esse dia.</h3>
             <img
-              src="src/pages/ActivitiesCalendar/assets/sad.png"
+              src="src/assets/img/sad.png"
               alt="sad"
               className="w-60"
             />
