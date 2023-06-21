@@ -24,9 +24,9 @@ export function WateringLevel({weatherapi}) {
     }
     
     return (
-        <div className="card w-auto h-full mt-5 ms-5 bg-base-100 shadow-xl">
+        <div className="card w-auto h-full mt-5 ms-5 shadow-xl" style={{background: "radial-gradient(black, transparent)"}}>
             <div className="card-body">
-                <h2 className="card-title">Estimativa de rega nos próximos dias:</h2>
+                <h2 className="card-title text-base-100">Estimativa de rega nos próximos dias:</h2>
                 <div className="grid grid-cols-7 place-items-center relative top-[38%] h-20">
                     <ProgressBar value={getValue(weatherapiDays["1"][1])} day={getDay(weatherapiDays["1"][0])}/>
                     <ProgressBar value={getValue(weatherapiDays["2"][1])} day={getDay(weatherapiDays["2"][0])}/>
