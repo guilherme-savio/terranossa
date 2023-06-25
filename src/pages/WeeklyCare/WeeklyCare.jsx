@@ -4,6 +4,7 @@ import { WateringLevel } from "./WateringLevel/WateringLevel"
 import { LoadingAPI } from "./Loading";
 import { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle";
+import Background from '../../components/Background';
 
 export function WeeklyCare() {
   const [lista, setLista] = useState([]);
@@ -23,15 +24,7 @@ export function WeeklyCare() {
 
   return (
     <div>
-      <div
-        className="fixed inset-0 -z-50 w-screen h-screen"
-        style={{
-          background: `linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${background})`,
-          backgroundPosition: "100% 100%",
-          backgroundSize: "100% 100%",
-        }}
-      />
-
+      <Background img={background} />
       <div className="mb-[10%]">
         <PageTitle 
           subTitle="Mantenha a horta em controle"

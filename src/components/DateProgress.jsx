@@ -13,7 +13,7 @@ export default function DateProgress({ startDate, endDate }) {
     }
   }
 
-  function formatDate(date) {
+  const formatDate = (date) => {
     return date.toLocaleString(undefined, {
       day: '2-digit',
       month: 'short',

@@ -1,25 +1,23 @@
 import React, { useState, useContext } from 'react';
 import Day from './Day';
 import ActivityService from '../../services/ActivityService';
-import ActivityContext from './contexts/ActivityContext';
 
 export default function Calendar() {
-  const { activities } = useContext(ActivityContext);
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  function handlePrevMonth() {
+  const handlePrevMonth = () => {
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
     );
   }
 
-  function handleNextMonth() {
+  const handleNextMonth = () => {
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
     );
   }
 
-  function renderCalendarDays() {
+  const renderCalendarDays = () => {
     const days = [];
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -32,7 +30,7 @@ export default function Calendar() {
         <Day 
           key={date.getTime()} 
           date={date}
-          hasActivity={ActivityService.hasInDate(activities, date)} 
+          hasActivity={ActivityService.hasInDate(date)} 
           isHeader={false}
         >
           {i}

@@ -1,46 +1,34 @@
 import React, { useContext, useState, useRef } from 'react';
-import DateProgress from './DateProgress';
+import DateProgress from '../../components/DateProgress';
 import DayActivityContext from './contexts/DayActivityContext';
+import ActivityService from '../../services/ActivityService';
+import CurrentDayContext from './contexts/CurrentDayContext';
 
 export default function ActivityCard({ activity }) {
+  const { currentDay } = useContext(CurrentDayContext);
   const { dayActivities, setDayActivities } = useContext(DayActivityContext);
   const [showOptions, setShowOptions] = useState(false);
 
-  const enableEdit = activity.enableEdit || false;
+  const editable = activity.editable || false;
 
   const handleNameChange = (e) => {
-    const updatedActivities = dayActivities.map((a) => {
-      if (a.id === activity.id) {
-        return { ...a, name: e.target.value };
-      }
-
-      return a;
-    });
-
-    setDayActivities(updatedActivities);
+    ActivityService.updateActivity({ ...activity, name: e.target.value });
+    updateDayActivities();
   };
 
   const toggleEdit = () => {
-    const updatedActivities = dayActivities.map((a) => {
-      if (a.id === activity.id) {
-        return { ...a, enableEdit: !enableEdit };
-      }
-
-      return a;
-    });
-
-    setDayActivities(updatedActivities);
+    ActivityService.updateActivity({ ...activity, editable: !activity.editable });
+    updateDayActivities();
   };
 
   const deleteActivity = () => {
-    const updatedActivities = dayActivities.map((a) => {
-      if (a.id === activity.id) {
-        return { ...a, delete: true };
-      }
-    });
-
-    setDayActivities(updatedActivities);
+    ActivityService.deleteActivity(activity);
+    updateDayActivities();
   };
+
+  const updateDayActivities = () => {
+    setDayActivities(ActivityService.getByDate(currentDay));
+  }
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
@@ -50,10 +38,10 @@ export default function ActivityCard({ activity }) {
     <li key={activity.id} className="bg-neutral-100 rounded-lg shadow-md p-4 m-2">
       <div className="relative flex items-center mb-1">
         <input
-          className="flex-grow"
+          className="flex-grow input input-xs pl-2"
           value={activity.name}
           onChange={handleNameChange}
-          disabled={!enableEdit}
+          disabled={!editable}
         />
         <button onClick={toggleEdit} className="ml-2 w-5">
           <img

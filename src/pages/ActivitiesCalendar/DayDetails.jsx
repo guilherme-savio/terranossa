@@ -1,22 +1,23 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ActivityCard from './ActivityCard';
-import Activity from '../../models/Activity';
 import CurrentDayContext from './contexts/CurrentDayContext';
 import DayActivityContext from './contexts/DayActivityContext';
+import ActivityService from '../../services/ActivityService';
 
 export default function DayDetails() {
-  const { dayActivities, setDayActivities } = useContext(DayActivityContext);
   const { currentDay } = useContext(CurrentDayContext);
+  const { dayActivities, setDayActivities } = useContext(DayActivityContext);
 
-  function renderActivities() {
-    return dayActivities.map(activity => !activity.delete && <ActivityCard key={activity.id} activity={activity}/>);
+  const renderActivities = () => {
+    return dayActivities.map(activity => <ActivityCard key={activity.id} activity={activity}/>);
   }
 
-  function addActivity() {
-    setDayActivities([...dayActivities, new Activity('', currentDay, currentDay, true)]);
+  const addActivity = () => {
+    ActivityService.addActivity(currentDay);
+    setDayActivities(ActivityService.getByDate(currentDay));
   }
 
-  function formatDate(date) {
+  const formatDate = (date) => {
     return date.toLocaleString(undefined, {
       weekday: 'long',
       day: '2-digit'
@@ -33,11 +34,6 @@ export default function DayDetails() {
         : <div className='text-center'>
             <br/>
             <h3>Não existem atividades agendadas para esse dia.</h3>
-            <img
-              src="src/assets/img/sad.png"
-              alt="sad"
-              className="w-60"
-            />
           </div>
       }
       <button onClick={addActivity} className="btn btn-primary absolute right-3 bottom-3">

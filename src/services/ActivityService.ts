@@ -1,15 +1,32 @@
 import Utils from '../utils/Utils';
-import Activity from '../models/Activity';
+
+let activities = [
+  {
+    id: 1,
+    name: 'Plantação',
+    startDate: new Date('2023-05-30 10:00'),
+    endDate: new Date('2023-06-01 14:00'), 
+    editable: false
+  },
+  {
+    id: 2,
+    name: 'Colheita',
+    startDate: new Date('2023-06-14 10:00'),
+    endDate: new Date('2023-06-15 14:00'), 
+    editable: false
+  },
+];
 
 export default class ActivityService {
-  static lastId: number = 0;
-  
   static getNextId(): number {
-    this.lastId = this.lastId + 1;
-    return this.lastId;
+    return Math.max(...activities.map(activity => activity.id)) + 1;
   }
 
-  static getByDate(activities: Activity[], date: Date) {
+  static getAll() {
+    return activities;
+  }
+
+  static getByDate(date: Date): any[] {
     const dateTime = date.getTime();
 
     return activities.filter(activity => {
@@ -20,19 +37,34 @@ export default class ActivityService {
     });
   }
 
-  static hasInDate(activities: Activity[], date: Date) {
-    return this.getByDate(activities, date).length > 0;
+  static hasInDate(date: Date): boolean {
+    return this.getByDate(date).length > 0;
   }
 
-  static getToUpdate(activities: Activity[], dayActivities: Activity[]) {
-    const updated = dayActivities.filter(activity => activity?.name !== '' && !activity?.delete);
+  static updateActivity(activity: any): void {
+    activities = activities.map((a) => {
+      if (a.id === activity.id) {
+        return activity;
+      }
 
-    activities.map((activity) => {
-      if (!dayActivities.some(a => a.id === activity.id)) {
-        updated.push(activity);
-      } 
+      return a;
     });
+  }
 
-    return updated;
+  static addActivity(date: Date): void {
+    const activity = {
+      id: this.getNextId(),
+      name: '', 
+      startDate: date, 
+      endDate: date, 
+      editable: true
+    };
+
+    activities = [...activities, activity]
+  }
+
+  static deleteActivity(activity: any): void {
+    activities.splice(activities.indexOf(activity), 1);
   }
 }
+
