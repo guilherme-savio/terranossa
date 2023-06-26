@@ -1,6 +1,25 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Login } from "../pages/Login";
 
 export function Header() {
+  const [isModal, setIsModal] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
+
+  function openModal() {
+    setIsModal(!isModal)
+  }
+
+  function handleLogin(user, psswd) {
+    if(user == 'admin' & psswd == 'admin') {
+      setIsLogin(true)
+
+      setIsModal(!isModal)
+    }
+
+    return false
+  }
+
   return (
     <div className="navbar pl-4 bg-primary rounded-box shadow-xl text-base-100 mb-10">
       <div className="flex-1">
@@ -21,21 +40,33 @@ export function Header() {
               Home
             </NavLink>
           </li>
-          <li>
-            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/weekly-care" title="WeeklyCare">
-              Cuidados Semanais
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/activities-calendar" title="Calendar">
-              Calendário
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/team" title="Team">
-              Equipe
-            </NavLink>
-          </li>
+          {isLogin == false && 
+            <button className="btn btn-ghost text-base-100 active:text-accent" onClick={openModal}>
+              Login
+            </button>
+          }
+          
+          {isModal == true ? <Login handleLogin={handleLogin} /> : ""}
+          
+          {isLogin == true && 
+            <>
+            <li>
+              <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/weekly-care" title="WeeklyCare">
+                Cuidados Semanais
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/activities-calendar" title="Calendar">
+                Calendário
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="btn btn-ghost text-base-100 active:text-accent" to="/team" title="Team">
+                Equipe
+              </NavLink>
+            </li>
+            </>
+          }
         </ul>
       </div>
     </div>
