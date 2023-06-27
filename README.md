@@ -6,7 +6,7 @@ O site irá ajudar no gerenciamento das hortas comunitárias, apresentando infor
 A princípio, o site irá conter:
 - Home com informações genéricas da quantidade de canteiros observados, juntamente com um calendário que mostraria um dia para cuidados gerais;
 - Tela que mostraria se, naquela semana, seria necessário regar mais ou menos, de acordo com a previsão do tempo;
-- Tela com um tempo médio de germinação/cultivo/colheita dos canteiros, com base nas informações do pacote de sementes;
+- Tela com gerenciamento da equipe que cuida da horta;
 - Tela com calendário de plantio;
 - Login para gestores da horta.
 
