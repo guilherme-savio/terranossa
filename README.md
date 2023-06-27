@@ -17,5 +17,3 @@ Integrantes:
 - Higor Goulart
 - Guilherme Savio
 - Sofia Martins
-- 
-
